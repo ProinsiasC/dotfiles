@@ -1,0 +1,84 @@
+# Conky settings #
+background yes 
+update_interval 3 
+
+cpu_avg_samples 1 
+net_avg_samples 1
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+
+temperature_unit celsius
+
+# XFCE lightdm backround issue
+own_window_argb_visual no 
+own_window_argb_value 0 
+
+# Window specifications #
+own_window_class Conky
+own_window yes
+own_window_type override 
+own_window_transparent yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 300 1000
+maximum_width 300 
+
+alignment tr
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+#default_color gray
+default_shade_color red
+default_outline_color green
+
+# Text settings #
+use_xft yes
+override_utf8_locale yes
+xftfont Play:normal:size=8
+xftalpha 0.9
+uppercase no
+
+default_color 333333
+color0 b2ff34
+color1 efefef
+color2 1994D1
+#color3 1994D1 
+
+# Lua Load  ##${voffset 750}
+lua_load ~/.conky.lua
+#lua_draw_hook_pre ring_stats
+lua_draw_hook_pre conky_main
+
+TEXT
+${font Play:normal:size=8}${voffset 16}${color0}${freq_g cpu0} Ghz/${acpitemp}°C
+${voffset 0}${color0}CPU1: ${color0}${cpu cpu0}%
+${voffset 2}${color0}CPU2: ${color0}${cpu cpu1}%
+${voffset 2}${color0}CPU3: ${color0}${cpu cpu2}%
+${voffset 2}${color0}CPU4: ${color0}${cpu cpu3}%
+${goto 25}${voffset 135}Root${color0}${alignr 290} / ${fs_size /}
+${goto 25}${voffset 1}Storage${alignr 290} / ${fs_size /home/gary/storage}
+${goto 25}${voffset 1}Home${alignr 290} / ${fs_size /home}
+${voffset 7}${goto 240}${color0}SWAP
+${voffset 3}${goto 240}${color0}RAM
+${font Michroma:bold:size=8}${color0}${voffset 60}${nodename}${kernel}
+${hr}
+${font Play:normal:size=8}${voffset 20}${mpd_status}${goto 70}${mpd_artist}
+${voffset 50}Download $color1 ${downspeedgraph enp2s0 30,150 b2ff34 efefef -l  -t}
+${voffset 5}${color0}Upload $color1 ${upspeedgraph enp2s0 30,150 b2ff34 efefef -l -t}
+${color0}${hr}
+${voffset 15}${top name 1}${alignr 150}${top pid 1}
+${top name 2}${alignr 150}${top pid 2}
+${top name 3}${alignr 150}${top pid 3}
+${top name 4}${alignr 150}${top pid 4}

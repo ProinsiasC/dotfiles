@@ -1,15 +1,13 @@
--- A TESTER
 --set alarm value, this is the value at which bar color will change
 alarm_value=80
 ----set alarm bar color, 1,0,0,1 = red fully opaque
 ar,ag,ab,aa=1,0,0,1
 
--- Un m?lange des deux
+
 normal="0xAAF334"
 warn="0xff7200"
 crit="0xff000d"
 
--- seulement quand fond n?cessaire
 corner_r=35
 bg_colour=0x333333
 bg_alpha=0.2

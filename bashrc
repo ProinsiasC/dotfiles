@@ -9,7 +9,6 @@
 
 #Set Editor
 export EDITOR=vim
-export IPLAYER_OURDIR="~/yt"
 
 
 #PS1

@@ -1,17 +1,18 @@
 --set alarm value, this is the value at which bar color will change
 alarm_value=80
 ----set alarm bar color, 1,0,0,1 = red fully opaque
-ar,ag,ab,aa=1,0,0,1
+--ar,ag,ab,aa=1,0,0,1
 
 
-normal="0xAAF334"
+normal="0x656698"
 warn="0xff7200"
 crit="0xff000d"
 
 corner_r=35
-bg_colour=0x333333
+bg_colour=0x28283c
 bg_alpha=0.2
-
+fg_colour=0x656698
+fg_alpha=0.8
 
 settings_table = {
     
@@ -19,9 +20,9 @@ settings_table = {
         name='acpitemp',
         arg='',
         max=110,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.8,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=100, y=120,
         radius=97,
@@ -33,9 +34,9 @@ settings_table = {
         name='cpu',
         arg='cpu0',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.8,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=100, y=120,
         radius=86,
@@ -47,9 +48,9 @@ settings_table = {
         name='cpu',
         arg='cpu1',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.7,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=100, y=120,
         radius=71,
@@ -61,9 +62,9 @@ settings_table = {
         name='cpu',
         arg='cpu2',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.6,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=100, y=120,
         radius=57,
@@ -75,9 +76,9 @@ settings_table = {
         name='cpu',
         arg='cpu3',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.5,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=100, y=120,
         radius=44,
@@ -89,9 +90,9 @@ settings_table = {
         name='memperc',
         arg='',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.8,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=235, y=230,
         radius=60,
@@ -103,9 +104,9 @@ settings_table = {
         name='swapperc',
         arg='',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.4,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=235, y=230,
         radius=45,
@@ -117,9 +118,9 @@ settings_table = {
         name='fs_used_perc',
         arg='/',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.8,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=125, y=270,
         radius=40,
@@ -131,9 +132,9 @@ settings_table = {
         name='fs_used_perc',
         arg='/home/gary/storage',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.6,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=125, y=270,
         radius=28,
@@ -145,9 +146,9 @@ settings_table = {
         name='fs_used_perc',
         arg='/home',
         max=100,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.4,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=125, y=270,
         radius=16,
@@ -159,9 +160,9 @@ settings_table = {
         name='downspeedf',
         arg='',
         max=2000,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.8,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=290, y=346,
         radius=0,
@@ -173,9 +174,9 @@ settings_table = {
         name='upspeedf',
         arg='',
         max=200,
-        bg_colour=0xdddddd,
+        --bg_colour=0x28283c,
         bg_alpha=0.6,
-        fg_colour=0xAAF334,
+        fg_colour=0x656698,
         fg_alpha=0.8,
         x=290, y=346,
         radius=0,
@@ -197,7 +198,7 @@ function draw_ring(cr,t,pt)
 	local w,h=conky_window.width,conky_window.height
 	
 	local xc,yc,ring_r,ring_w,sa,ea=pt['x'],pt['y'],pt['radius'],pt['thickness'],pt['start_angle'],pt['end_angle']
-	local bgc, bga, fgc, fga=pt['bg_colour'], pt['bg_alpha'], pt['fg_colour'], pt['fg_alpha']
+	local bgc, bga, fgc, fga=pt['--bg_colour'], pt['bg_alpha'], pt['fg_colour'], pt['fg_alpha']
 
 	local angle_0=sa*(2*math.pi/360)-math.pi/2
 	local angle_f=ea*(2*math.pi/360)-math.pi/2
@@ -250,7 +251,7 @@ function conky_ring_stats()
   cairo_destroy(cr)
 end
 
--- Contr?le de l'espace disque
+-- Disk Space 
 function disk_watch()
 
     warn_disk=93
@@ -333,7 +334,7 @@ function conky_draw_bg()
     cairo_curve_to(cr,0,0,0,0,corner_r,0)
     cairo_close_path(cr)
     
-    cairo_set_source_rgba(cr,rgb_to_r_g_b(bg_colour,bg_alpha))
+    cairo_set_source_rgba(cr,rgb_to_r_g_b(--bg_colour,bg_alpha))
     cairo_fill(cr)
 end
 

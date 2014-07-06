@@ -7,8 +7,14 @@ draw_graph_borders no
 default_color 656698 
 lua_load ~/.conky.lua
 lua_draw_hook_pre conky_main
+double_buffer yes
+
+xftfont Play:normal:size=8
+use_xft yes
+xftalpha 0.9
+
 TEXT
-${font Play:normal:size=8}${voffset 10}${freq_g cpu0} Ghz/${acpitemp}°C
+${voffset 10}${freq_g cpu0} Ghz/${acpitemp}°C
 CPU1: ${cpu cpu0}%
 CPU2: ${cpu cpu1}%
 CPU3: ${cpu cpu2}%

@@ -11,7 +11,7 @@ double_buffer yes
 
 xftfont Play:normal:size=8
 use_xft yes
-xftalpha 0.9
+xftalpha 0.2
 
 TEXT
 ${voffset 10}${freq_g cpu0} Ghz/${acpitemp}°C

@@ -1,4 +1,4 @@
-# Gary S
+# 
 #
 # ~/.bashrc
 # 

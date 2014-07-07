@@ -9,9 +9,10 @@ lua_load ~/.conky.lua
 lua_draw_hook_pre conky_main
 double_buffer yes
 
-xftfont Play:normal:size=8
 use_xft yes
+xftfont Play:normal:size=8
 xftalpha 0.2
+override_utf8_locale yes
 
 TEXT
 ${voffset 10}${freq_g cpu0} Ghz/${acpitemp}°C
@@ -22,7 +23,7 @@ CPU4: ${cpu cpu3}%
 ${voffset 130}Root${alignr 290} / ${fs_size /}
 Storage ${alignr 290} / ${fs_size /home/gary/storage}
 Home${alignr 290} / ${fs_size /home}
-${goto 240}SWAP
+${voffset 5}${goto 240}SWAP
 ${goto 240}RAM
 ${voffset 60}${nodename}${kernel}
 ${hr}

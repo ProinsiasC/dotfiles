@@ -1,16 +1,7 @@
---set alarm value, this is the value at which bar color will change
-alarm_value=80
-----set alarm bar color, 1,0,0,1 = red fully opaque
-ar,ag,ab,aa=1,0,0,1
-
-
 normal="0x656698"
-warn="0xff7200"
-crit="0xff000d"
-
 corner_r=35
---bg_colour=0x333333
---bg_alpha=0.2
+bg_colour=0x333333
+bg_alpha=0.2
 
 
 settings_table = {

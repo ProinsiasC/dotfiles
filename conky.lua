@@ -183,6 +183,7 @@ function rgb_to_r_g_b(colour,alpha)
 	return ((colour / 0x10000) % 0x100) / 255., ((colour / 0x100) % 0x100) / 255., (colour % 0x100) / 255., alpha
 end
 
+
 function draw_ring(cr,t,pt)
 
 	local w,h=conky_window.width,conky_window.height
@@ -231,80 +232,28 @@ function conky_ring_stats()
 	local updates=conky_parse('${updates}')
 	update_num=tonumber(updates)
 
+
 	if update_num>5 then
 	    for i in pairs(settings_table) do
                 display_temp=temp_watch()
 		setup_rings(cr,settings_table[i])
 	    end
+
 	end
    cairo_surface_destroy(cs)
   cairo_destroy(cr)
 end
 
--- Contr?le de l'espace disque
+--Disk Space
 function disk_watch()
-
-    warn_disk=93
-    crit_disk=98
-
-    -- poser une boucle plus tard... pas simple
-
-    disk=tonumber(conky_parse("${fs_used_perc /}"))
-
-    if disk<warn_disk then
-        settings_table[8]['fg_colour']=normal
-    elseif disk<crit_disk then
-        settings_table[8]['fg_colour']=warn
-    else
-        settings_table[8]['fg_colour']=crit
-    end
-
-    disk=tonumber(conky_parse("${fs_used_perc /home}"))
-
-    if disk<warn_disk then
-        settings_table[9]['fg_colour']=normal
-    elseif disk<crit_disk then
-        settings_table[9]['fg_colour']=warn
-    else
-        settings_table[9]['fg_colour']=crit
-    end
-
-    disk=tonumber(conky_parse("${fs_used_perc /usr}"))
-
-    if disk<warn_disk then
-        settings_table[10]['fg_colour']=normal
-    elseif disk<crit_disk then
-        settings_table[10]['fg_colour']=warn
-    else
-        settings_table[10]['fg_colour']=crit
-    end
+disk=tonumber(conky_parse("${fs_used_perc /}"))
+disk=tonumber(conky_parse("${fs_used_perc /usr}"))
 end
 
--- Contr?le de la temp?rature
+--Temperature
 function temp_watch()
-
-    warn_value=70
-    crit_value=80
-
-    temperature=tonumber(conky_parse("${acpitemp}"))
-
-    if temperature<warn_value then
-        settings_table[1]['fg_colour']=normal
-    elseif temperature<crit_value then
-        settings_table[1]['fg_colour']=warn
-    else
-        settings_table[1]['fg_colour']=crit
-    end
+temperature=tonumber(conky_parse("${acpitemp}"))
 end
-
--- Contr?le de l'interface active
---function iface_watch()
-
---    iface=conky_parse("${if_existing /proc/net/route eth0}eth0${else}enp2s0${endif}")
-
---    settings_table[11]['arg']=iface
---    settings_table[12]['arg']=iface
---end
 
 function conky_draw_bg()
     if conky_window==nil then return end
@@ -328,12 +277,9 @@ function conky_draw_bg()
     cairo_fill(cr)
 end
 
-
 function conky_main()
-    temp_watch()
-    disk_watch()
-    --iface_watch()
-    conky_ring_stats()
--- quand fond n?cessaire
---    conky_draw_bg()
+	temp_watch()
+	disk_watch()
+	conky_ring_stats()
 end
+

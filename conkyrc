@@ -1,3 +1,4 @@
+background yes
 update_interval 1
 own_window yes
 own_window_type override 
@@ -22,7 +23,7 @@ CPU2: ${cpu cpu1}%
 CPU3: ${cpu cpu2}%
 CPU4: ${cpu cpu3}%
 ${voffset 130}Root${alignr 290} / ${fs_size /}
-Storage ${alignr 290} / ${fs_size /home/gary/storage}
+Storage ${alignr 290} / ${fs_size /mnt/storage}
 Home${alignr 290} / ${fs_size /home}
 ${voffset 5}${goto 240}SWAP
 ${goto 240}RAM
@@ -36,3 +37,5 @@ ${voffset 15}${top name 1}${alignr 150}${top pid 1}
 ${top name 2}${alignr 150}${top pid 2}
 ${top name 3}${alignr 150}${top pid 3}
 ${top name 4}${alignr 150}${top pid 4}
+${hddtemp /dev/sda}
+${apcupsd_temp}
